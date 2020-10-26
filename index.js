@@ -31,11 +31,17 @@ app.all("/*", function (req, res, next) {
 // Api send password to email
 // url: https://us-central1-password-request-system.cloudfunctions.net/api/mail
 app.post('/mail', async (req, res) => {
-  console.log("/mail <<<<<",req.body)
+  console.log("/mail <<<<<", req.body)
 
-  const success = await dispatchEmail(req.body);
-  console.log(success);
-  res.status(201).json(req.body)
+  try {
+    const success = await dispatchEmail(req.body);
+    console.log(success);
+    res.status(200).json(req.body)
+  } catch (error) {
+    res.status(400).json(error.messages)
+  }
+
+
 });
 //End  Api send password to email
 
@@ -43,11 +49,15 @@ app.post('/mail', async (req, res) => {
 // Api send password to email
 // url: https://us-central1-password-request-system.cloudfunctions.net/api/mail
 app.post('/cancelEmail', async (req, res) => {
-  console.log("/mail <<<<<",req.body)
+  console.log("/mail <<<<<", req.body)
+  try {
+    const success = await cancelEmail(req.body);
+    console.log(success);
+    res.status(200).json(req.body)
+  } catch (error) {
+    res.status(400).json(error.messages)
+  }
 
-  const success = await cancelEmail(req.body);
-  console.log(success);
-  res.status(201).json(req.body)
 });
 //End  Api send password to email
 
@@ -55,9 +65,14 @@ app.post('/cancelEmail', async (req, res) => {
 // Api send notify to line prof
 // url: https://us-central1-password-request-system.cloudfunctions.net/api
 app.post('/', async (req, res, next) => {
-  console.log("/ <<<<<",req.body)
-  await replyLine(req.body)
-  res.status(201).json(req.body)
+  console.log("/ <<<<<", req.body)
+  try {
+    await replyLine(req.body)
+    res.status(201).json(req.body)
+  } catch (error) {
+    res.status(400).json(error.messages)
+  }
+
 });
 //End Api send notify to line prof
 
