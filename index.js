@@ -8,8 +8,7 @@ const nodemailer = require('nodemailer');
 const LINE_MESSAGING_API = 'https://api.line.me/v2/bot/message';
 const LINE_HEADER = {
   'Content-Type': 'application/json',
-  'Authorization': `Bearer /PrW7qp4CXRwVhcDDqDuLSwK7pRP9wBUofM6ivoBk3y1TEct1iYYHzVr3lHIwtmyjsuHQSTCJO5+G9iSfhtmUk+IbHsLxhWU300C5boo5yDEpvqxBKOFDqbZEQfQym8/PQGcv4ffWmJeh2JyyKhrSVGUYhWQfeY8sLGRXgo3xvw=`
-  // 'Authorization': `Bearer <Channel access token>
+  'Authorization': `Bearer <Channel access token>`
 };
 
 const app = express();
@@ -103,7 +102,7 @@ async function dispatchEmail(email) {
     service: 'gmail',
     auth: {
       user: 'new.4049@gmail.com', // your email
-      pass: 'Niinewza1234' // your email password
+      pass: '' // your email password
     }
   });
   const mailOptions = await {
@@ -123,7 +122,7 @@ async function cancelEmail(email) {
     service: 'gmail',
     auth: {
       user: 'new.4049@gmail.com', // your email
-      pass: 'Niinewza1234' // your email password
+      pass: '' // your email password
     }
   });
   const mailOptions = await {
